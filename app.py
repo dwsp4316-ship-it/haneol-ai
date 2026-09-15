@@ -17,7 +17,7 @@ st.set_page_config(
 api_key = st.secrets["GROQ_API_KEY"] if "GROQ_API_KEY" in st.secrets else None
 
 if api_key:
-    client = Groq(api_key=api_key)
+    client = Groq(api_key=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)
 else:
     client = None
 
