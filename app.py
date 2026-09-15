@@ -345,7 +345,7 @@ if prompt := st.chat_input("질문이나 고민을 입력해 보세요..."):
             with st.spinner(loading_msg):
                 try:
                     stream = client.chat.completions.create(
-                        model="llama3-70b-8192",
+                        model="llama-3.3-70b-versatile",
                         messages=api_messages,
                         stream=True,
                     )
