@@ -15,7 +15,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Groq 클라이언트 초기화 (하드코딩 방식)
-client = Groq(api_key="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")
+client = Groq(api_key="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")
 
 # 헤더
 st.markdown("<h1 class='main-title'>🧭 HANEOL AI</h1>", unsafe_allow_html=True)
@@ -44,7 +44,7 @@ if user_input := st.chat_input("질문이나 고민을 입력해 보세요..."):
             api_messages = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
             
             stream = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="llama-3.1-8b-instant",
                 messages=api_messages,
                 stream=True,
             )
