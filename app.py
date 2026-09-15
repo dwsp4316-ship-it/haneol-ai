@@ -13,11 +13,14 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Groq 클라이언트 초기화
-try:
-    client = Groq(api_key=st.secrets["GROQ_API_KEY"])
-except Exception:
+# Groq 클라이언트 안전한 초기화
+api_key = st.secrets.get("GROQ_API_KEY")
+
+if api_key:
+    client = Groq(api_key=api_key)
+else:
     client = None
+    st.error("⚠️ Streamlit Secrets에 GROQ_API_KEY가 등록되지 않았습니다.")
 
 # 세션 상태 테마 초기화
 if "theme" not in st.session_state:
@@ -345,7 +348,7 @@ if prompt := st.chat_input("질문이나 고민을 입력해 보세요..."):
             with st.spinner(loading_msg):
                 try:
                     stream = client.chat.completions.create(
-                        model="llama-3.1-8b-instant",
+                        model="llama-3.3-70b-versatile",
                         messages=api_messages,
                         stream=True,
                     )
