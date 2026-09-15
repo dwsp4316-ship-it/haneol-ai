@@ -14,7 +14,13 @@ st.set_page_config(
 )
 
 # Groq 클라이언트 초기화
-api_key = st.secrets["GROQ_API_KEY"] if "GROQ_API_KEY" in st.secrets else None
+api_key = st.secrets.get("GROQ_API_KEY")
+
+if api_key:
+    client = Groq(api_key=api_key)
+else:
+    client = None
+    st.error("⚠️ Streamlit Secrets에 GROQ_API_KEY가 등록되지 않았습니다.")
 
 if api_key:
     client = Groq(api_key="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")
