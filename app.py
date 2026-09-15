@@ -13,8 +13,8 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Groq 클라이언트 안전한 초기화
-api_key = st.secrets.get("GROQ_API_KEY")
+# Groq 클라이언트 직접 지정 방식
+client = Groq(api_key="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")
 
 if api_key:
     client = Groq(api_key=api_key)
